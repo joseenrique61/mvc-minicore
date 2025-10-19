@@ -20,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        URL::forceHttps($this->app->environment(['production']));
+        // URL::forceHttps($this->app->environment(['production']));
+        setlocale(LC_NUMERIC, 'en_US.UTF-8');
     }
 }

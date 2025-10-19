@@ -135,7 +135,7 @@ export default function Index({ sellers, rules, sales, comissions, start_date, e
                                         <td>{sale.seller.name}</td>
                                         <td>${sale.amount.toFixed(2)}</td>
                                         {comissions && <td>${comissions[sale.seller.name].toFixed(2)}</td>}
-                                        {!comissions && <td>{new Date(sale.date).toLocaleDateString()}</td>}
+                                        {!comissions && <td>{sale.date.toString().split("T")[0]}</td>}
                                     </tr>
                                 ))}
                             </tbody>

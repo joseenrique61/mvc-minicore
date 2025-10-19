@@ -27,7 +27,7 @@ class ComissionController extends Controller
             'end_date' => 'required|date|after_or_equal:start_date'
         ]);
 
-        $start_date = Carbon::parse($data['start_date'])->startOfDay();
+        $start_date = Carbon::parse($data['start_date'])->endOfDay();
         $end_date = Carbon::parse($data['end_date'])->endOfDay();
 
         $sales = Sale::with("seller")->whereBetween("date", [
