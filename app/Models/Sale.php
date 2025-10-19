@@ -17,6 +17,7 @@ class Sale extends Model
 
     protected $casts = [
         'date' => 'datetime',
+        'amount' => 'float'
     ];
 
     public function seller()

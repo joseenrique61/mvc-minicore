@@ -14,4 +14,9 @@ class Rule extends Model
         'percentage',
         'min_amount',
     ];
+
+    protected $casts = [
+        'percentage' => 'float',
+        'min_amount' => 'float'
+    ];
 }
