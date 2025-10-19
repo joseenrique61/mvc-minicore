@@ -2,14 +2,25 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Sale extends Model
 {
-    protected $fillable = ["amount", "date", "seller_id"];
+    use HasFactory;
 
-    public function seller(): BelongsTo {
+    protected $fillable = [
+        'amount',
+        'date',
+        'seller_id',
+    ];
+
+    protected $casts = [
+        'date' => 'datetime',
+    ];
+
+    public function seller()
+    {
         return $this->belongsTo(Seller::class);
     }
 }

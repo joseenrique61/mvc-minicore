@@ -1,8 +1,7 @@
 <?php
 
+use App\Http\Controllers\ComissionController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('welcome');
-})->name('home');
+Route::get('/', [ComissionController::class, 'index'])->name('comission.index');
+Route::post('/', [ComissionController::class, 'filter'])->name('comission.filter');

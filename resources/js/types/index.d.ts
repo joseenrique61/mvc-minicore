@@ -19,3 +19,23 @@ export interface User {
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
 }
+
+export interface Seller {
+    id: number;
+    name: string;
+    email: string;
+}
+
+export interface Sale {
+    id: number;
+    amount: number;
+    date: Date;
+    seller: Seller;
+}
+
+export interface Rule {
+    id: number;
+    name: string;
+    percentage: number;
+    min_amount: number;
+}
