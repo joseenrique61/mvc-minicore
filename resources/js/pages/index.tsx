@@ -121,7 +121,11 @@ export default function Index({ sellers, rules, sales, comissions, start_date, e
                             />
                             {errors.end_date && <p className="comissions-dashboard__label--error">{errors.end_date}</p>}
                         </div>
-                        <button type="submit" className="comissions-dashboard__button comissions-dashboard__button--filled" disabled={processing}>
+                        <button
+                            type="submit"
+                            className="comissions-dashboard__button comissions-dashboard__button--filled"
+                            disabled={processing || !data.start_date || !data.end_date}
+                        >
                             Filter
                         </button>
 
