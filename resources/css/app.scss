@@ -90,6 +90,11 @@ body {
     &__label {
         font-size: 0.875rem;
         font-weight: 500;
+
+        &--error {
+            color: red;
+            margin-top: 4px;
+        }
     }
 
     &__input {

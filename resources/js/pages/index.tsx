@@ -12,7 +12,7 @@ interface IndexProps {
 }
 
 export default function Index({ sellers, rules, sales, comissions, start_date, end_date }: IndexProps) {
-    const { data, setData, post, processing } = useForm({
+    const { data, setData, post, processing, errors, setError, clearErrors } = useForm({
         start_date: start_date || '',
         end_date: end_date || '',
     });
@@ -27,6 +27,10 @@ export default function Index({ sellers, rules, sales, comissions, start_date, e
 
     function submit(e: React.FormEvent) {
         e.preventDefault();
+        if (data.start_date && data.end_date && new Date(data.start_date) > new Date(data.end_date)) {
+            setError('end_date', 'La fecha final no puede ser menor que la fecha inicial');
+            return;
+        }
         post('/');
     }
 
@@ -95,7 +99,10 @@ export default function Index({ sellers, rules, sales, comissions, start_date, e
                                 type="date"
                                 value={data.start_date}
                                 className="comissions-dashboard__input"
-                                onChange={(e) => setData('start_date', e.target.value)}
+                                onChange={(e) => {
+                                    setData('start_date', e.target.value);
+                                    clearErrors('end_date');
+                                }}
                             />
                         </div>
                         <div className="comissions-dashboard__form-group">
@@ -107,8 +114,12 @@ export default function Index({ sellers, rules, sales, comissions, start_date, e
                                 type="date"
                                 value={data.end_date}
                                 className="comissions-dashboard__input"
-                                onChange={(e) => setData('end_date', e.target.value)}
+                                onChange={(e) => {
+                                    setData('end_date', e.target.value);
+                                    clearErrors('end_date');
+                                }}
                             />
+                            {errors.end_date && <p className="comissions-dashboard__label--error">{errors.end_date}</p>}
                         </div>
                         <button type="submit" className="comissions-dashboard__button comissions-dashboard__button--filled" disabled={processing}>
                             Filter
